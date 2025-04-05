@@ -1,12 +1,27 @@
+// tasks.module.ts
+
 import { Module } from '@nestjs/common';
-import { TasksController } from './tasks.controller';
-import { TasksService } from './tasks.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TaskRepository } from './tasks.repository';
+import { DataSource } from 'typeorm';
+import { Task } from './dto/task.entity';
+import { TasksService } from './tasks.service';
+import { TasksController } from './tasks.controller';
+import { TasksRepository } from './tasks.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TaskRepository])],
+  imports: [TypeOrmModule.forFeature([Task])],
   controllers: [TasksController],
-  providers: [TasksService],
+  providers: [
+    TasksService,
+    {
+      provide: TasksRepository,
+      useFactory: (dataSource: DataSource) => {
+        const baseRepository = dataSource.getRepository(Task);
+        Object.setPrototypeOf(baseRepository, TasksRepository.prototype);
+        return baseRepository;
+      },
+      inject: [DataSource],
+    },
+  ],
 })
 export class TasksModule {}

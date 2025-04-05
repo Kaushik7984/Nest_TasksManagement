@@ -18,8 +18,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
     }),
   ],
-  controllers: [TasksController],
-  providers: [TasksService],
+  // controllers: [TasksController],
+  // providers: [TasksService],
   exports: [],
 })
 export class AppModule {
