@@ -1,0 +1,8 @@
+nest new <project name> -> create new nest project
+
+nest g mo <module name> -> create new module
+
+nest g co <controller name> -> create new controller
+nest g controller tasks --no-spec -> create new controller with no spec, means create withot test file
+
+nest g service tasks --no-spec -> create new service with no spec
