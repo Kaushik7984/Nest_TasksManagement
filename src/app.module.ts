@@ -13,15 +13,13 @@ import { AuthModule } from './auth/auth.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'postgres',
+      password: 'postgers',
       database: 'task-management',
       autoLoadEntities: true,
       synchronize: true,
     }),
     AuthModule,
   ],
-  // controllers: [TasksController],
-  // providers: [TasksService],
   exports: [],
 })
 export class AppModule {
